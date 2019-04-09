@@ -2,7 +2,7 @@
   <div :class="align">
     <div class="subheading grey--text mt-2">Rate the movie:</div>
     <v-rating
-      v-model="rating"
+      v-model="localRating"
       color="yellow darken-3"
       background-color="grey darken-1"
       empty-icon="$vuetify.icons.ratingFull"
@@ -31,13 +31,21 @@ export default {
 
   data () {
     return {
-      
+      localRating: null
     }
   },
 
   methods: {
     save() {
-      this.$emit('changeRating', this.rating)
+      this.$emit('changeRating', this.localRating)
+    }
+  },
+
+
+
+  watch: {
+    rating () {
+      this.localRating = this.rating
     }
   }
 

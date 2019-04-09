@@ -41,8 +41,6 @@ export default {
     }
   },
 
-
-
   watch: {
     rating () {
       this.localRating = this.rating

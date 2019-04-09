@@ -30,16 +30,16 @@
           :custom-filter="customFilter"
         >
           <template v-slot:items="props">
-            <td class="text-xs-center">
+            <td>
               <v-list-tile :to="{ name: 'movie', params: { id: props.item._id }}">
                 {{ props.item.title }}
               </v-list-tile>
             </td>
             <td class="text-xs-center">
-              {{ props.item.genres.map(o => o && o.name) }}
+              {{ props.item.genreNames.toString() | splitStringByComma }}
             </td>
             <td class="text-xs-center">
-              {{ props.item.release_year | formatDate }}
+              {{ props.item.releaseYear | formatDate }}
             </td>
             <td :class="`text-xs-center ${props.item.commentSection}`">
               <v-card
@@ -69,6 +69,7 @@
 <script>
 import movieService from './../utils/services/movie-service'
 import dateToString from '@/mixins/dateToString'
+import splitString from '@/mixins/formatString'
 
 
 import MoviesNav from '@/components/navigation/MovieNav'
@@ -79,7 +80,7 @@ export default {
   data: () => ({
     search: '',
     headers: [
-      { text: 'Movie title', align: 'center', value: 'title' },
+      { text: 'Movie title', align: 'center', value: 'title', width: '285px' },
       { text: 'Genre', align: 'center', value: 'genres' },
       { text: 'Release Year', align: 'center', value: 'releaseYear' },
       { text: 'Comment Section', align: 'center', value: 'commentSection', width: '45px' },
@@ -95,19 +96,28 @@ export default {
         this.movies = data
       })
     },
-    /* customFilter(items, search, filter) {
-      search = search.toString().toLowerCase()
-      return items.filter(row => filter(row['title', 'commentSection'], search));
-    }, 
-    */
+
     customFilter(items, search, filter) {
       search = search.toString().toLowerCase();
       return items.filter(i => (
         Object.keys(i).some(j => filter(i[j], search))
       ))
     },
+
     getGenresArray(genres) {
       return genres.map(o => o && o.name)
+    },
+    formatMovie () {
+      this.movies.forEach( movie => {
+        movie.genreNames = movie.genres.map(a => a.name)
+        movie.person = movie.createdBy.name
+      })
+    }
+  },
+
+  watch: {
+    movies () {
+      this.formatMovie()
     }
   },
 
@@ -118,7 +128,7 @@ export default {
   components: {
     MoviesNav
   },
-  mixins: [ dateToString ]
+  mixins: [ dateToString, splitString ]
 }
 </script>
 

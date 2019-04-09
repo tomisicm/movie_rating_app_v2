@@ -5,8 +5,7 @@
     color="#fafafa"
     dense
   >
-  <v-toolbar-items
-  >
+  <v-toolbar-items>
     <v-btn
       flat
       :to="{ name: 'addmovies' }"

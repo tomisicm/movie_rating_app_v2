@@ -28,7 +28,7 @@
         {{ props.item.name }}
       </td>
       <td class="text-xs-center">
-        {{ props.item.type }}
+        {{ props.item.type.toString() | splitStringByComma }}
       </td>      
       </template>
       <v-alert
@@ -47,6 +47,7 @@
 
 <script>
 import genreService from '@/utils/services/genre-service'
+import splitString from '@/mixins/formatString'
 
 import AddGenre from '@/components/dialog/AddGenre'
 import MoviesNav from '@/components/navigation/MovieNav'
@@ -89,6 +90,9 @@ export default {
     this.getAllGenres()
   },
   
+  mixins: [
+    splitString
+  ],
   components: {
     MoviesNav, AddGenre
   },

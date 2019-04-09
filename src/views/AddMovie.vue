@@ -104,7 +104,7 @@ export default {
         description: '',
         genres: [],
         stars: [],
-        release_year: '',
+        releaseYear: '',
         commentSection: 'open',
       },
       rating: 0
@@ -112,7 +112,7 @@ export default {
   },
   methods: {
     updateReleaseYear (newReleseYear) {
-      this.movie.release_year = newReleseYear
+      this.movie.releaseYear = newReleseYear
     },
     updateGenreList (newGenres) {
       this.movie.genres = newGenres

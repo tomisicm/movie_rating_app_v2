@@ -2,11 +2,19 @@
   <div>
   <MoviesNav />
   <v-card flat class="pa-3">  
-    <v-card-title>
+    <v-card-title class="title">
       Genres List:
       <v-spacer />
-      <AddGenre />
+      
+      <GenreDialog/>
+
+      <v-btn color="primary" @click="addGenre">
+      <v-icon>add</v-icon>
+        Add Genre
+      </v-btn>
+
       <v-text-field
+        class="mx-2 px-4"
         v-model="search"
         append-icon="search"
         label="Search"
@@ -29,7 +37,22 @@
       </td>
       <td class="text-xs-center">
         {{ props.item.type.toString() | splitStringByComma }}
-      </td>      
+      </td>
+      <td class="justify-center layout px-0">
+          <v-icon
+            small
+            class="mr-2"
+            @click="editGenre(props.item)"
+          >
+            edit
+          </v-icon>
+          <v-icon
+            small
+            @click="deleteGenre(props.item)"
+          >
+            delete
+          </v-icon>
+        </td>
       </template>
       <v-alert
         v-slot:no-results
@@ -47,25 +70,30 @@
 
 <script>
 import genreService from '@/utils/services/genre-service'
-import splitString from '@/mixins/formatString'
 
-import AddGenre from '@/components/dialog/AddGenre'
+import splitString from '@/mixins/formatString'
+import { inputMixin } from '@/mixins/inputMixin'
+import GenreDialog from '@/components/dialog/GenreDialog'
 import MoviesNav from '@/components/navigation/MovieNav'
+
+import { eventBus } from '@/main'
 
 export default {
   name:'GenresPage',
   
-  data: () => ({
-    search: '',
-    headers: [
-      { text: 'Genre name', align: 'center', value: 'name' },
-      { text: 'Genre Type', align: 'center', value: 'type' }
-    ],
-    genres: [],
-    genre: {
-      name: ''
+  data () { 
+    return {
+      dialog: false,
+      search: '',
+      headers: [
+        { text: 'Genre name', align: 'center', value: 'name' },
+        { text: 'Genre Type', align: 'center', value: 'type' },
+        { text: 'Actions', align: 'center', value: 'type', sortable: false }
+      ],
+      genres: [],
+
     }
-  }),
+  },
 
   methods: {
     getAllGenres () {
@@ -79,22 +107,30 @@ export default {
       return items.filter(i => (
         Object.keys(i).some(j => filter(i[j], search))
       ))
-    }
-  },
+    },
 
-  computed: {
-    
+    editGenre (genre) {
+      eventBus.$emit('editgenre', genre)
+    },
+    deleteGenre (genre) {
+      eventBus.$emit('deletegenre', genre)
+    },
+    addGenre () {
+      eventBus.$emit('addgenre')
+    }
+
   },
   
   created () {
     this.getAllGenres()
   },
   
+
   mixins: [
-    splitString
+    splitString, inputMixin
   ],
   components: {
-    MoviesNav, AddGenre
+    MoviesNav, GenreDialog
   },
 }
 </script>

@@ -72,6 +72,14 @@ const router = new Router({
       }
     },
     {
+      path: '/artists',
+      name: 'artist',
+      component: () => import('./views/Artists.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/books',
       name: 'books',
       component: () => import('./views/MoviesPage.vue')

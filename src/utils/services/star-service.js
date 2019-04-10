@@ -1,12 +1,13 @@
-// import authService from './auth-service'
 import http from './http-service'
 
 class StarService {
-  searchForStarsorGetAll(query) {
+  searchForStarsorGetAll(query, page, perPage) {
     return http
     .get('/api/star', {
       params: {
-        query: query
+        query: query,
+        page,
+        perPage
       }
     })
     .then(({ data }) => {
@@ -32,21 +33,19 @@ class StarService {
     .then(({ data }) => data)
   }
 
-  /* create({ title, description, images }) {
+  /* create({ star }) {
     return http.post('/api/star/', {
-      title,
-      description,
-      images
+      star
     })
   } */
 
-  /* editStar(id, { title, description, images }) {
+  /* editStar(id, { star }) {
     return http.put(`/api/star/${id}`, {
      
     })
   } */
 
-  deleteMovie(id) {
+  deleteStar(id) {
     return http.delete(`/api/star/${id}`)
   }
 }

@@ -14,7 +14,10 @@
       flat
       :to="{ name: 'genre' }"
     >Add new Genre</v-btn>
-      <v-btn flat>Add new Artists</v-btn>
+    <v-btn
+      flat
+      :to="{ name: 'artist' }"
+    >Add new Artists</v-btn>
     </v-toolbar-items>
     </v-toolbar>
   </nav>

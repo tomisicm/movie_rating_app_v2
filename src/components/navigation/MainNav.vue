@@ -46,7 +46,6 @@ export default {
   data() { 
     return {
       drawer: false,
-      user: this.getUser(),
       avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyd39HDX-f0b1t1Y53ezjeXAj0a2AVaK4DQFmN_cCvccZ-h_Y4" 
     }
   },
@@ -56,12 +55,15 @@ export default {
     ])
   },
 
-  components: {
-    SideNav, Logout
+  computed: {
+    user() {
+      return this.getUser()
+    },
   },
 
-  created() {
-    this.getUser()
+  components: {
+    SideNav, Logout
   }
+
 }
 </script>

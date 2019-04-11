@@ -15,7 +15,8 @@
 
       <v-text-field
         class="mx-2 px-4"
-        v-model="search"
+        :value="search"
+        @input="onInput($event)"
         append-icon="search"
         label="Search"
         single-line
@@ -98,13 +99,18 @@ export default {
 
   methods: {
     getStars () {
-      return () => {
-        starService.searchForStarsorGetAll(this.search)
+      
+      starService.searchForStarsorGetAll(this.search)
         .then(({data}) => {
           this.stars = data.docs
         })
-      }
+      
     },
+
+    onInput: 
+      _.debounce(function (value) {
+        this.search = value
+      }, 2000),
 
     editArtist (artist) {
       eventBus.$emit('editartist', artist)
@@ -120,7 +126,7 @@ export default {
   watch: {
     search (val) {
       if (val && val.length > 2) {
-        _.delay(this.getStars(this.search), 2000)
+        this.getStars(this.search)
       }
     }
   },

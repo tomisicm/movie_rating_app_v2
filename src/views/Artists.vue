@@ -97,10 +97,9 @@ export default {
   },
 
   methods: {
-
-    getStars (search) {
+    getStars () {
       return () => {
-        starService.searchForStarsorGetAll(search)
+        starService.searchForStarsorGetAll(this.search)
         .then(({data}) => {
           this.stars = data.docs
         })
@@ -126,9 +125,11 @@ export default {
     }
   },
   
-  created () {
-    /* this.getAllGenres() */
-  },
+  /* 
+  created() {
+    this.getStars = _.debounce(this.getStars, 500);
+  }, 
+  */
   
 
   mixins: [

@@ -1,6 +1,8 @@
 import authService from '@/utils/services/auth-service'
 import router from '@/router'
 
+/* errors in store is just wrong */
+
 const getUserFromLocalStorage = () => {
   const user = localStorage.getItem('user')
   if (user) return JSON.parse(user)

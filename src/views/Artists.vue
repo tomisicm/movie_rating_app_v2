@@ -125,9 +125,7 @@ export default {
 
   watch: {
     search (val) {
-      if (val && val.length > 2) {
-        this.getStars(this.search)
-      }
+      this.getStars(this.search)
     }
   },
   

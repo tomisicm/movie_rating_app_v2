@@ -59,7 +59,7 @@ export default {
 
   watch: {
     search () {
-      _.delay(this.getUsers(this.search), 2000)
+      this.getUsers(this.search)
     }
   },
 
@@ -78,13 +78,10 @@ export default {
       if (index >= 0) this.users.splice(index, 1)
     },
     getUsers (search) {
-      return () => {
-        userService.searchForUsers(search)
-        .then(({data}) => {
-          this.suggestedUsers = data.docs
-
-        })
-      }
+      userService.searchForUsers(search)
+      .then(({data}) => {
+        this.suggestedUsers = data.docs
+      })
     }
   },
 

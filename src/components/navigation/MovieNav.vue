@@ -1,10 +1,6 @@
 <template>
   <nav class="text-xs-center">
-  <v-toolbar
-    flat
-    color="#fafafa"
-    dense
-  >
+  <v-toolbar flat color="#fafafa" dense>
   <v-toolbar-items>
     <v-btn
       flat
@@ -18,7 +14,7 @@
       flat
       :to="{ name: 'artist' }"
     >Add new Artists</v-btn>
-    </v-toolbar-items>
+  </v-toolbar-items>
     </v-toolbar>
   </nav>
 </template>

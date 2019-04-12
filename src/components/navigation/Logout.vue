@@ -20,14 +20,22 @@
         <v-list-tile :to="{ name: 'me' }">
           <v-btn block flat color="grey">
           <span>Profile</span>
-          <v-icon right>exit_to_app</v-icon>
           </v-btn>
+          <v-icon right>account_circle</v-icon>
         </v-list-tile>
+
+        <v-list-tile :to="{ name: 'inbox' }">
+          <v-btn block flat color="grey">
+          <span>Inbox</span>
+          </v-btn>
+          <v-icon right>inbox</v-icon>
+        </v-list-tile>
+
         <v-list-tile>
           <v-btn block flat color="grey" @click="onClick">
           <span>Signout</span>
-          <v-icon right>exit_to_app</v-icon>
           </v-btn>
+          <v-icon right>exit_to_app</v-icon>
         </v-list-tile>
       </v-list>
     </v-menu>

@@ -16,33 +16,32 @@
 
     <v-dialog
       v-model="dialog"
-      max-width="420"
+      max-width="500"
       @keydown.esc="dialog = false"
     >
       <v-card height="500px">
         <v-card-title class="headline">
           <v-responsive class="pt-4">
-              <v-avatar
-                left
-                size="50"
-                class="grey lighten-2"
-              >
-                <img
-                  :src="user.avatar"
-                  alt="user avatar"
-                >
-              </v-avatar>
-            <span class="mx-4 title font-weight-light">{{user.name}}</span>
-            
-            </v-responsive>
-            <v-spacer/>
-            <button class="v-btn--flat v-btn--small theme--light"
-                small
-                flat="flat"
-                @click="dialog = false"
+            <v-avatar
+              left
+              size="50"
+              class="grey lighten-2"
             >
-            <v-icon>close</v-icon>
-            </button>
+              <img
+                :src="user.avatar"
+                alt="user avatar"
+              >
+            </v-avatar>
+            <span class="mx-4 title font-weight-light">{{user.name}}</span>  
+          </v-responsive>
+          <v-spacer/>
+          <button class="v-btn--flat v-btn--small theme--light"
+              small
+              flat="flat"
+              @click="dialog = false"
+          >
+          <v-icon>close</v-icon>
+          </button>
         </v-card-title>
 
         <v-card-text>
@@ -85,12 +84,12 @@
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      dialog: false,
-      user: { name: 'The Jack', role: 'Web Developer', avatar:"/assets/kisspng-computer-icons-user-account-symbol-clip-art-icon-mo-5b38a9723954d0.1097238515304400502348.jpg" },
-    })
-  }
+export default {
+  data: () => ({
+    dialog: false,
+    user: { name: 'The Jack', role: 'Web Developer', avatar:"/assets/kisspng-computer-icons-user-account-symbol-clip-art-icon-mo-5b38a9723954d0.1097238515304400502348.jpg" },
+  })
+}
 </script>
 
 <style>

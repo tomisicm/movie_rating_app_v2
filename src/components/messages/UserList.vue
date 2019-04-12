@@ -64,9 +64,9 @@ export default {
   },
 
   computed: {
-    itemsArray () {
+    /* itemsArray () {
       return this.suggestedUsers.map(o => o.fullname)
-    }
+    } */
   },
 
   methods: {
@@ -86,7 +86,7 @@ export default {
   },
 
   created () {
-    this.getUsers()
+    this.getUsers = _.debounce(this.getUsers, 1000)
   },
 
   mixins: [

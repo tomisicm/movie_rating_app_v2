@@ -99,12 +99,10 @@ export default {
 
   methods: {
     getStars () {
-      
       starService.searchForStarsorGetAll(this.search)
-        .then(({data}) => {
-          this.stars = data.docs
-        })
-      
+      .then(({data}) => {
+        this.stars = data.docs
+      })
     },
 
     onInput: 
@@ -128,13 +126,6 @@ export default {
       this.getStars(this.search)
     }
   },
-  
-  /* 
-  created() {
-    this.getStars = _.debounce(this.getStars, 500);
-  }, 
-  */
-  
 
   mixins: [
     splitString, inputMixin

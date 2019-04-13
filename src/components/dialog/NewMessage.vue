@@ -13,6 +13,7 @@
       max-width="500"
       @keydown.esc="dialog = false"
     >
+    <v-form ref="form">
       <v-card height="400px" id='message'>
         <v-card-title class="headline">
 
@@ -47,11 +48,14 @@
           >Send</v-btn>
         </v-card-actions>
       </v-card>
+    </v-form>
     </v-dialog>
   </v-layout>
 </template>
 
 <script>
+import messagingService from '@/utils/services/message-service'
+
 import UserList from '@/components/messages/UserList'
 
 export default {
@@ -67,6 +71,22 @@ export default {
   methods: {
     changeRecipiantsList(newRecipiantList) {
       this.recipiants = newRecipiantList
+    },
+
+    onCancel () {
+      this.$refs.form.reset()
+      this.dialog = false
+    },
+
+    onSubmit () {
+      messagingService.sendUserMessage(
+        {
+          message: {
+            body: this.body
+          },
+          recipiants: this.recipiants,
+        }
+      ).then(this.onCancel())
     }
   },
 

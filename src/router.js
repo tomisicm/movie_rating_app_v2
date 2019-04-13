@@ -119,6 +119,14 @@ const router = new Router({
       }
     },
     {
+      path: '/inbox',
+      name: 'inbox',
+      component: () => import('./views/Inbox.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/me',
       name: 'me',
       component: () => import('./views/Users.vue'),

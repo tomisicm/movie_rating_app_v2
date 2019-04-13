@@ -4,21 +4,12 @@
       Users
     </h1>
     <v-container class="my-5">
-      <v-layout
-        row
-        wrap
-      >
-        <v-flex
+      <v-layout row wrap>
+        <v-flex xs12 sm6 lg3
           v-for="user in users"
           :key="user.name"
-          xs12
-          sm6
-          lg3
         >
-          <v-card
-            flat
-            class="text-xs-center ma-3"
-          >
+          <v-card flat class="text-xs-center ma-3">
             <v-responsive class="pt-4">
               <v-avatar
                 size="100"
@@ -38,8 +29,9 @@
                 {{ user.role }}
               </div>
             </v-card-text>
-            <UserMessage />
-            
+
+            <ExistingMessage />
+
           </v-card>
         </v-flex>
       </v-layout>
@@ -48,7 +40,7 @@
 </template>
 
 <script>
-import UserMessage from '@/components/dialog/UserMessage'
+import ExistingMessage from '@/components/dialog/ExistingMessage'
 
 export default {
   data: () => ({
@@ -60,7 +52,7 @@ export default {
     ]
   }),
   components: {
-    UserMessage
+    ExistingMessage
   }
 }
 </script>

@@ -122,7 +122,7 @@ export default {
   },
 
   watch: {
-    search (val) {
+    search () {
       this.getStars(this.search)
     }
   },

@@ -13,29 +13,38 @@
       max-width="500"
       @keydown.esc="dialog = false"
     >
-      <v-card height="500px">
+      <v-card height="400px" id='message'>
         <v-card-title class="headline">
-          <!-- -->
 
-          <UserList />
-
-          <!-- -->
-          <v-spacer/>
-
+          <UserList 
+            :recipiants="recipiants"
+            v-on:changeRecipiantsList="changeRecipiantsList($event)"
+          />
+          
         </v-card-title>
-        <v-divider />
 
         <v-card-text>
 
+          <v-flex>
+            <v-textarea
+              rows="7"
+              outline
+              name="input-7-4"
+              v-model="body"
+            ></v-textarea>
+          </v-flex>
 
         </v-card-text>
-        <v-divider />
+        
+        <v-card-actions id='message-footer'>
+          <v-spacer />
+          <v-btn right large color="primary" flat
+            @click="onCancel"
+          >Cancel</v-btn>
 
-        <v-card-actions>
-        <div class="typer">
-
-
-        </div>
+          <v-btn large color="primary white--text" flat
+            @click="onSubmit"
+          >Send</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -46,10 +55,20 @@
 import UserList from '@/components/messages/UserList'
 
 export default {
-  data: () => ({
-    dialog: false,
-    
-  }),
+  data () { 
+    return {
+      dialog: false,
+
+      recipiants: [],
+      body: ''
+    }
+  },
+
+  methods: {
+    changeRecipiantsList(newRecipiantList) {
+      this.recipiants = newRecipiantList
+    }
+  },
 
   components: {
     UserList
@@ -59,28 +78,11 @@ export default {
 </script>
 
 <style>
-.typer {
-    box-sizing: border-box;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-    bottom: 0, important!;
-    height: 4.9rem;
-    width: 100%;
+#message {
+  position: relative;
 }
-.speech-bubble {
-	position: relative;
-	background: #006f79e5;
-	border-radius: .4em;
-    width: 100%;
-    padding: 20px;
-    margin: 1em 0;
-    text-align: center;
-}
-
-
-hgroup {
-    display: block;
-    
+#message-footer {
+  position: absolute;
+  bottom: 0;
 }
 </style>

@@ -1,13 +1,13 @@
 <template>
   <v-flex>
+    <span>Select users to send message to:</span>
     <v-autocomplete
-      v-model="users"
-      :items="suggestedUsers"
+      v-model="localRecipiants"
+      :items="suggestedRecipiants"
       :search-input.sync="search"
       cache-items
       chips
       color="blue-grey lighten-2"
-      label="Select users to send message to:"
       item-text="name"
       item-value="_id"
       placeholder="Please start typing"
@@ -43,7 +43,7 @@ export default {
   name: 'UserList',
 
   props: {
-    userlist: Array,
+    recipiants: Array,
     default () {
       return []
     }
@@ -52,8 +52,8 @@ export default {
   data () {
     return {
       search: '',
-      users: [],/* this.userlist.slice(), */
-      suggestedUsers: []
+      localRecipiants: this.recipiants.slice(),
+      suggestedRecipiants: []
     }
   },
 
@@ -64,23 +64,21 @@ export default {
   },
 
   computed: {
-    /* itemsArray () {
-      return this.suggestedUsers.map(o => o.fullname)
-    } */
+    
   },
 
   methods: {
     save() {
-      setTimeout(() => {this.$emit('changeStarsList', this.users)}, 100)
+      setTimeout(() => {this.$emit('changeRecipiantsList', this.localRecipiants)}, 100)
     },
     remove (item) {
-      const index = this.users.indexOf(item._id)
-      if (index >= 0) this.users.splice(index, 1)
+      const index = this.localRecipiants.indexOf(item._id)
+      if (index >= 0) this.localRecipiants.splice(index, 1)
     },
     getUsers (search) {
       userService.searchForUsers(search)
       .then(({data}) => {
-        this.suggestedUsers = data.docs
+        this.suggestedRecipiants = data.docs
       })
     }
   },

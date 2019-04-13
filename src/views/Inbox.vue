@@ -3,23 +3,21 @@
     <v-content justify-center>
       <v-layout row wrap mx-5 sm6 md4>
 
-        
-        
-
         <!-- <ExistingMessage /> -->
 
-        <v-card>
-          <v-toolbar> 
-
+        <v-card min-width="100vh" max-width="120vh">
+          <v-toolbar>
+            <v-toolbar-items>
+              <v-btn flat>Sent by me</v-btn>
+              <v-btn flat>Sent to me</v-btn>
+            </v-toolbar-items>
             <NewMessage />
-
-
           </v-toolbar>
 
         <MessageList/>
 
         </v-card>
-        
+
       </v-layout>
     </v-content>
   </v-container>

@@ -10,6 +10,14 @@ class MessagingService {
       return data
     })
   }
+
+  getAllUserMessages() {
+    return http
+    .get('/api/messaging')
+    .then(({ data }) => {
+      return data
+    })
+  }
 }
 
 const messagingService = new MessagingService()

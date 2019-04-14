@@ -22,22 +22,14 @@
       <v-card height="500px">
         <v-card-title class="headline">
           <v-responsive class="pt-4">
-            <v-avatar
-              left
-              size="50"
-              class="grey lighten-2"
-            >
-              <img
-                :src="user.avatar"
-                alt="user avatar"
-              >
+            <v-avatar left size="50" class="grey lighten-2">
+              <img :src="user.avatar" alt="user avatar">
             </v-avatar>
             <span class="mx-4 title font-weight-light">{{user.name}}</span>  
           </v-responsive>
           <v-spacer/>
           <button class="v-btn--flat v-btn--small theme--light"
-            small
-            flat="flat"
+            small flat="flat"
             @click="dialog = false"
           >
           <v-icon>close</v-icon>
@@ -61,21 +53,13 @@
         <v-divider />
         <v-card-actions>
 
-
         <div class="typer">
           <v-text-field
-            @keyup.enter="dialog = false"
-            box
-            append-icon="send"
+            @keyup.enter="dialog = false" box 
           ></v-text-field>
-          <!-- <v-btn
-            @click="dialog = false"
-            color="indigo"
-            flat="flat"
-            large
-          >
-            <v-icon>send</v-icon>
-          </v-btn> -->
+          <v-btn @click="dialog = false" color="indigo" flat large id='send'>
+            <v-icon large>send</v-icon>
+          </v-btn>
         </div>
         </v-card-actions>
       </v-card>
@@ -99,7 +83,6 @@ export default {
 
   created () {
     eventBus.$on('openConversationInChatMode', (recipiants) => {
-      console.log('recipiants')
       console.log(recipiants[0]._id)
       this.dialog = true
       messagingService.getConversation(recipiants[0]._id)
@@ -137,5 +120,15 @@ export default {
 hgroup {
     display: block;
     
+}
+
+#send {
+  min-width: 48px;
+  margin: 10px -5px 35px 0px;
+  /* margin-top: 10px;
+  margin-bottom: 35px;
+  margin-left: 0px;
+  margin-right: -5px; */
+  padding: 0px;
 }
 </style>

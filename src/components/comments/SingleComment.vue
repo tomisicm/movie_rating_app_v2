@@ -22,7 +22,7 @@
         <div v-if="currentUsersComment()">
           <a right @click="editComment"><i> Edit</i></a>
           <v-spacer />
-          <GeneralModal
+          <DeleteComment
             :comment="comment"
           />
         </div>
@@ -38,7 +38,7 @@ import { mapGetters } from 'vuex'
 
 import dateToString from '@/mixins/dateToString'
 
-import GeneralModal from '@/components/dialog/GeneralModal'
+import DeleteCommentModal from '@/components/dialog/DeleteCommentModal'
 
 export default {
   name: 'singleComment',
@@ -66,39 +66,39 @@ export default {
 
   mixins: [ dateToString ],
   components: {
-    GeneralModal
+    DeleteCommentModal
   }
 }
 </script>
 
 <style scoped>
 .comment {
-    display: flex;
-    padding: 8px;
-    margin-bottom: 4px;
-    align-items: center;
-    background-color: #F2F2F2;
-    border-radius: 5px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  display: flex;
+  padding: 8px;
+  margin-bottom: 4px;
+  align-items: center;
+  background-color: #F2F2F2;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 .comment .avatar {
-    align-self: flex-start;
+  align-self: flex-start;
 }
 .comment .avatar > img {
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    align-self: start;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  align-self: start;
 }
 .comment .text {
-    text-align: left;
-    margin-left: 15px;
+  text-align: left;
+  margin-left: 15px;
 }
 .comment .text span {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 .comment .text .username {
-    font-weight: bold;
-    color: #333;
+  font-weight: bold;
+  color: #333;
 }
 </style>

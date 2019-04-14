@@ -51,7 +51,7 @@ export default {
 
   data () {
     return {
-      search: '',
+      search: null,
       localRecipiants: this.recipiants.slice(),
       suggestedRecipiants: []
     }

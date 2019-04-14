@@ -1,7 +1,7 @@
 <template>
   <v-container justify-center grid-list-md text-xs-center mx-5>
     <v-content justify-center>
-      <v-layout row wrap mx-5 sm6 md4>
+      <v-layout row wrap sm6 md4>
 
         <!-- <ExistingMessage /> -->
 

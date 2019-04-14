@@ -3,7 +3,7 @@
     row
     justify-center
   >
-  <v-btn
+  <!-- <v-btn
     flat
     color="grey"
     @click.stop="dialog = true"
@@ -12,7 +12,7 @@
       message
     </v-icon>
     <span>Send Message</span>
-  </v-btn>
+  </v-btn> -->
 
     <v-dialog
       v-model="dialog"
@@ -36,9 +36,9 @@
           </v-responsive>
           <v-spacer/>
           <button class="v-btn--flat v-btn--small theme--light"
-              small
-              flat="flat"
-              @click="dialog = false"
+            small
+            flat="flat"
+            @click="dialog = false"
           >
           <v-icon>close</v-icon>
           </button>
@@ -60,7 +60,7 @@
 
         <v-divider />
         <v-card-actions>
-        
+
 
         <div class="typer">
           <v-text-field
@@ -84,23 +84,44 @@
 </template>
 
 <script>
+import messagingService from '@/utils/services/message-service'
+
+import { eventBus } from '@/main'
+
 export default {
-  data: () => ({
-    dialog: false,
-    user: { name: 'The Jack', role: 'Web Developer', avatar:"/assets/kisspng-computer-icons-user-account-symbol-clip-art-icon-mo-5b38a9723954d0.1097238515304400502348.jpg" },
-  })
+  data () { 
+    return {
+      dialog: false,
+      user: { name: 'The Jack', role: 'Web Developer', avatar:"/assets/kisspng-computer-icons-user-account-symbol-clip-art-icon-mo-5b38a9723954d0.1097238515304400502348.jpg" },
+      conersation: []
+    }
+  },
+
+  created () {
+    eventBus.$on('openConversationInChatMode', (recipiants) => {
+      console.log('recipiants')
+      console.log(recipiants[0]._id)
+      this.dialog = true
+      messagingService.getConversation(recipiants[0]._id)
+      .then((data) => {
+        this.conersation = data
+        console.log(data)
+      })
+    })
+  }
+
 }
 </script>
 
 <style>
 .typer {
-    box-sizing: border-box;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-    bottom: 0, important!;
-    height: 4.9rem;
-    width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  bottom: 0, important!;
+  height: 4.9rem;
+  width: 100%;
 }
 .speech-bubble {
 	position: relative;

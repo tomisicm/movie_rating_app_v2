@@ -18,6 +18,14 @@ class MessagingService {
       return data
     })
   }
+
+  getConversation(id) {
+    return http
+    .get(`/api/messaging/conv/${id}`)
+    .then(({ data }) => {
+      return data
+    })
+  }
 }
 
 const messagingService = new MessagingService()

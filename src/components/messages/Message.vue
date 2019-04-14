@@ -2,6 +2,7 @@
   <v-list-tile
     :key="item.createdAt"
     avatar
+    v-on:click = "onClick"
   >
 
    <v-list-tile-avatar>
@@ -18,7 +19,7 @@
 
 
 <script>
-
+import { eventBus } from '@/main'
 
 export default {
 
@@ -31,7 +32,15 @@ export default {
   },
 
   data() {
+    return {
 
+    }
+  },
+
+  methods: {
+    onClick () {
+      eventBus.$emit('openConversationInChatMode', this.item.recipiants)
+    }
   }
 }
 </script>

@@ -3,8 +3,6 @@
     <v-content justify-center>
       <v-layout row wrap sm6 md4>
 
-        <!-- <ExistingMessage /> -->
-
         <v-card min-width="100vh" max-width="120vh">
           <v-toolbar>
             <v-toolbar-items>
@@ -24,7 +22,6 @@
 </template>
 
 <script>
-/* import ExistingMessage from '@/components/dialog/ExistingMessage' */
 import NewMessage from '@/components/dialog/NewMessage'
 import MessageList from '@/components/messages/MessageList'
 
@@ -36,7 +33,7 @@ export default {
   },
 
   components: {
-    MessageList, NewMessage, /* ExistingMessage,  */
+    MessageList, NewMessage, 
   }
 }
 </script>

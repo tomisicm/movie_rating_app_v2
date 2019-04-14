@@ -1,5 +1,6 @@
 <template>
   <v-list two-line>
+    <ExistingMessage />
     <div v-for="(item, index) in items" :key="item.id">
 
       <Message 
@@ -14,6 +15,7 @@
 <script>
 import messageService from '@/utils/services/message-service'
 
+import ExistingMessage from '@/components/dialog/ExistingMessage'
 import Message from '@/components/messages/Message'
 
 export default {
@@ -30,8 +32,12 @@ export default {
     })
   },
 
+  methods: {
+
+  },
+
   components: {
-    Message
+    Message, ExistingMessage,
   }
 
 }

@@ -12,7 +12,7 @@
       label="Select movie stars"
       item-text="fullname"
       item-value="id"
-      no-data-text="Please start typing"
+      no-data-text="There are no stars under this name."
       multiple
       :rules="multiSelectRule"
     >

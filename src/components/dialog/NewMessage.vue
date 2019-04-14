@@ -21,7 +21,7 @@
             :recipiants="recipiants"
             v-on:changeRecipiantsList="changeRecipiantsList($event)"
           />
-          
+
         </v-card-title>
 
         <v-card-text>

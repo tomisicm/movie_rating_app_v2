@@ -78,15 +78,18 @@ export default {
       this.dialog = false
     },
 
-    onSubmit () {
-      messagingService.sendUserMessage(
+    async onSubmit () {
+      await messagingService.sendUserMessage(
         {
           message: {
             body: this.body
           },
           recipiants: this.recipiants,
         }
-      ).then(this.onCancel())
+      ).then( ({data}) => {
+        // each recipiant id will get send
+        data.recipiants.forEach(recipiant => (this.$socket.emit('user_message', recipiant)))
+      }).then(this.onCancel())
     }
   },
 

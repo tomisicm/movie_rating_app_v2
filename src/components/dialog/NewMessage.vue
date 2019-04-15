@@ -88,8 +88,7 @@ export default {
         }
       ).then( ({data}) => {
         // each recipiant id will get send
-        data.recipiants.forEach(rec => (this.$socket.emit('user_message', rec)))
-        // this.$socket.emit('user_message', data.recipiants.toString())
+        data.recipiants.forEach(recipiant => (this.$socket.emit('user_message', recipiant)))
       }).then(this.onCancel())
     }
   },

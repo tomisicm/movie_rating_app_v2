@@ -1,5 +1,6 @@
 import authService from '@/utils/services/auth-service'
 import router from '@/router'
+import Vue from 'vue'
 
 /* errors in store is just wrong */
 
@@ -29,6 +30,10 @@ export default {
       try {
         const { data } = await authService.login(email, password)
         commit('SET_DATA', data)
+        
+        // user succesfully logged in so i send his id and open a room for him
+        Vue.prototype.$socket.emit('user_signedin_sucess', data.user._id)
+        
         router.push({ name: 'home' })
       } catch(e) {
         commit('SET_ERRORS', e.response.data.message)

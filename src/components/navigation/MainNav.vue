@@ -18,11 +18,9 @@
         </div>
       </v-list-tile>
 
-
       <Logout 
         :user="user"
       />
-
     </v-toolbar>
 
     <v-navigation-drawer
@@ -71,10 +69,31 @@ export default {
     },
   },
 
+  sockets: {
+    connect: function () {
+      console.log('socket connected')
+    },
+    new_message: function (data) {
+      
+      if (data == this.user._id) {
+        this.messageCounter ++
+      }
+      
+    }
+  },
+
+  created () {
+    /* does not work !
+    this.sockets.subscribe(this.user.id, (data) => {
+      if (data) {
+        this.messageCounter ++
+      }
+    }) */
+  },
+
   components: {
     SideNav, Logout
   }
-
 }
 </script>
 

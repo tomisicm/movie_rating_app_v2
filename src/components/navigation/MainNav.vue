@@ -11,7 +11,7 @@
       <v-spacer />
 
       <v-list-tile :to="{ name: 'inbox' }">
-        <v-icon right>inbox</v-icon>
+        <v-icon right id='inbox'>inbox</v-icon>
         <div class="redicon white--text" v-if=" messageCounter > 0">
           <span class="decisiontext caption"> {{ messageCounter }}
           </span>  
@@ -79,6 +79,10 @@ export default {
 </script>
 
 <style>
+#inbox {
+  font-size: 30px
+}
+
 .redicon{
   width: 2px;
   height: 2px;

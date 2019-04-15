@@ -20,7 +20,12 @@ const SocketInstance = socketio.connect('http://localhost:3000', {
 
 Vue.use(new VueSocketIO({
   debug: true,
-  connection: SocketInstance
+  connection: SocketInstance,
+  vuex: {
+    store,
+    actionPrefix: 'SOCKET_',
+    mutationPrefix: 'SOCKET_'
+},
 }))
 
 export const eventBus = new Vue()

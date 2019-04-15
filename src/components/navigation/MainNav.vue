@@ -71,7 +71,7 @@ export default {
 
   sockets: {
     connect: function () {
-      console.log('socket connected')
+      // console.log('socket connected')
     },
     new_message: function (data) {
       

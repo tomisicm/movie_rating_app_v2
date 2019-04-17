@@ -2,7 +2,6 @@
   <v-flex xs12 sm8>
     <v-autocomplete
       v-model="stars"
-      :disabled="isUpdating"
       :items="suggestedStars"
       :search-input.sync="search"
       cache-items
@@ -10,6 +9,7 @@
       chips
       color="blue-grey lighten-2"
       label="Select movie stars"
+      placeholder="Please start typing..."
       item-text="fullname"
       item-value="id"
       no-data-text="There are no stars under this name."
@@ -53,7 +53,7 @@ export default {
 
   data () {
     return {
-      search: '',
+      search: null,
       stars: this.starslist.slice(),
       suggestedStars: [],
       isUpdating: false
@@ -61,15 +61,8 @@ export default {
   },
 
   watch: {
-    search (val) {
-      if (val && val.length > 2) {
-        _.delay(this.getStars(this.search), 2000)
-      }
-    },
-    isUpdating (val) {
-      if (val) {
-        setTimeout(() => (this.isUpdating = false), 3000)
-      }
+    search () {
+      this.getStars(this.search)
     }
   },
 
@@ -87,18 +80,16 @@ export default {
       const index = this.stars.indexOf(item.id)
       if (index >= 0) this.stars.splice(index, 1)
     },
-    getStars (search) {
-      return () => {
-        starService.searchForStarsorGetAll(search)
-        .then(({data}) => {
-          this.suggestedStars = data
-        })
-      }
+    getStars () {
+      starService.searchForStarsorGetAll(this.search)
+      .then(({data}) => {
+        this.suggestedStars = data.docs
+      })
     }
   },
 
   created () {
-    this.getStars()
+    this.getStars = _.debounce(this.getStars, 1000)
   },
 
   mixins: [

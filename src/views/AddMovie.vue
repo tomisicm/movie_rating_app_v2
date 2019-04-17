@@ -74,7 +74,7 @@
           <v-flex row xs12 sm8>
             <v-spacer />
             <v-btn right large @click="$router.push({ name: 'movies' })">Cancel</v-btn>
-            <v-btn right large color="primary white--text" @click="save">Submit</v-btn>
+            <v-btn right large color="primary white--text" @click="onSubmit">Submit</v-btn>
           </v-flex>
         </v-flex>
       </v-layout>
@@ -124,7 +124,7 @@ export default {
       this.rating = newRating
     },
 
-    save() {
+    onSubmit() {
       movieService.createMovie(this.movie, this.rating)
         .then(() => {
           this.$router.push({ name: 'movies' })

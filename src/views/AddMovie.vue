@@ -110,6 +110,7 @@ export default {
       rating: 0
     }
   },
+
   methods: {
     updateReleaseYear (newReleseYear) {
       this.movie.releaseYear = newReleseYear
@@ -123,15 +124,14 @@ export default {
     updateRating (newRating) {
       this.rating = newRating
     },
-
     onSubmit() {
       movieService.createMovie(this.movie, this.rating)
         .then(() => {
           this.$router.push({ name: 'movies' })
         })
     }
-
   },
+  
   components: {
     GenreList, MoviesNav, StarList, Rating, Datepicker
   },

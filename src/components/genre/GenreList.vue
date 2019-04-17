@@ -7,6 +7,7 @@
       box
       chips
       color="blue-grey lighten-2"
+      placeholder="Please start typing..."
       label="Select genre"
       item-text="name"
       item-value="_id"
@@ -54,14 +55,6 @@ export default {
       suggestedGenres: [],
       genres: this.genreslist.slice(),
       isUpdating: false
-    }
-  },
-
-  watch: {
-    isUpdating (val) {
-      if (val) {
-        setTimeout(() => (this.isUpdating = false), 3000)
-      }
     }
   },
 

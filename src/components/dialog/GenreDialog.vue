@@ -67,12 +67,26 @@ export default {
   
   methods: {
     onSubmit () {
-      genreService.createGenre(this.localGenre)
-      this.dialog = false
-      this.resetGenre()
+      // Mistake. Async call. The resetGenre() happened 
+      // before the actual call was made
+      // solutions: .then or _delay or setTimeout
+      if (this.eventType === 'Submit') {
+      genreService.createGenre(this.localGenre).then(() => {
+        this.resetGenre()
+        }
+      )}
+      if (this.eventType === 'Confirm') {
+        genreService.editGenre(this.localGenre._id, this.localGenre).then(() => {
+        this.resetGenre()
+        }
+      )}
+      if (this.eventType === 'Delete') {
+        genreService.deleteGenre(this.localGenre._id).then(() => {
+        this.resetGenre()
+        }
+      )}
     },
     onCancel () {
-      this.dialog = false
       this.resetGenre()
     },
 
@@ -80,6 +94,7 @@ export default {
       this.localGenre.name = '',
       this.localGenre.type = []
       this.localGenre._id = null
+      this.dialog = false
     }
   }, 
 

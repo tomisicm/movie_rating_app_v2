@@ -50,16 +50,13 @@ class GenreService {
     })
   }
 
-  editGenre(id, { title, description, images }) {
-    return http.put(`/api/movie/${id}`, {
-      title,
-      description,
-      images
-    })
+  editGenre(id, genre) {
+    return http.put(`/api/genre/${id}`, genre
+    )
   }
 
-  deleteMovie(id) {
-    return http.delete(`/api/movie/${id}`)
+  deleteGenre(id) {
+    return http.delete(`/api/genre/${id}`)
   }
 }
 

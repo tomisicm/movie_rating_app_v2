@@ -25,7 +25,7 @@
             <v-avatar left size="50" class="grey lighten-2">
               <!-- <img :src="userr.avatar" alt="user avatar"> -->
             </v-avatar>
-            <span class="mx-4 title font-weight-light">{user.name}</span>  
+            <span class="mx-4 title font-weight-light"></span>  
           </v-responsive>
           <v-spacer/>
           <button class="v-btn--flat v-btn--small theme--light"
@@ -37,30 +37,28 @@
         </v-card-title>
 
         <v-card-text>
-        <div class="mr-4">
-          <hgroup class="speech-bubble white--text text-sm-left">
-          LEFT 
-          </hgroup>
-        </div>
-          
-        <div class="ml-4">
-          <hgroup class="speech-bubble white--text text-sm-left">
-          RIGHT
-          </hgroup>
-        </div>
+          <div 
+            v-for="conv in conversation"
+            :class="{ 'mr-4': conv.isLeft, 'ml-4' : !conv.isLeft }"
+            :key="conv._id"
+          >
+            <hgroup class="speech-bubble white--text text-sm-left">
+              {{ conv.message.body }}
+            </hgroup>
+          </div>
         </v-card-text>
 
         <v-divider />
-        <v-card-actions>
 
-        <div class="typer">
-          <v-text-field
-            @keyup.enter="dialog = false" box 
-          ></v-text-field>
-          <v-btn @click="dialog = false" color="indigo" flat large id='send'>
-            <v-icon large>send</v-icon>
-          </v-btn>
-        </div>
+        <v-card-actions>
+          <div class="typer">
+            <v-text-field
+              @keyup.enter="dialog = false" box 
+            ></v-text-field>
+            <v-btn @click="dialog = false" color="indigo" flat large id='send'>
+              <v-icon large>send</v-icon>
+            </v-btn>
+          </div>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -137,10 +135,8 @@ export default {
     text-align: center;
 }
 
-
 hgroup {
-    display: block;
-    
+  display: block;
 }
 
 #send {

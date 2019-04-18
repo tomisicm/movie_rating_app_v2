@@ -18,9 +18,6 @@
 </template>
 
 <script>
-import messageService from '@/utils/services/message-service'
-
-import ExistingMessage from '@/components/dialog/ExistingMessage'
 import Message from '@/components/messages/Message'
 
 export default {
@@ -36,7 +33,7 @@ export default {
 
 
   components: {
-    Message, ExistingMessage,
+    Message, 
   }
 
 }

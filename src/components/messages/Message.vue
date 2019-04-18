@@ -9,7 +9,7 @@
    </v-list-tile-avatar>
 
    <v-list-tile-content v-on:click = "onClick">
-      <v-list-tile-title v-html="item.createdAt"></v-list-tile-title>
+      <v-list-tile-title>{{ recipiantName() }} {{ item.createdAt| formatDate('YYYY MM DD hh:mm:ss') }}</v-list-tile-title>
       <v-list-tile-sub-title v-html="item.message.body"></v-list-tile-sub-title>
    </v-list-tile-content>
   </v-list-tile>
@@ -18,6 +18,7 @@
 
 <script>
 import { eventBus } from '@/main'
+import dateToString from '@/mixins/dateToString'
 
 export default {
 
@@ -38,10 +39,15 @@ export default {
   methods: {
     onClick () {
       // console.log(this.item.recipiants)
-      console.log('dlicks')
       eventBus.$emit('openConversationInChatMode', this.item.recipiants)
+    },
+    
+    recipiantName () {
+      return this.item.recipiants[0].name + ' '
     }
-  }
+  },
+
+  mixins: [dateToString]
 }
 </script>
 

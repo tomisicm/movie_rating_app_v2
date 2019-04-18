@@ -3,7 +3,7 @@
     :key="item.createdAt"
     avatar
   >
-  <v-checkbox class='delete' v-model="item._id"></v-checkbox>
+  <!-- <v-checkbox class='delete' v-model="selected"></v-checkbox> -->
    <v-list-tile-avatar>
       <img src='https://cdn.vuetifyjs.com/images/lists/1.jpg'>
    </v-list-tile-avatar>
@@ -29,9 +29,9 @@ export default {
     index: Number
   },
 
-  data() {
+  data () {
     return {
-
+      /* selected: false */
     }
   },
 
@@ -44,5 +44,8 @@ export default {
 </script>
 
 <style>
+.delete {
+  flex: 0 0 auto;
+}
 
 </style>

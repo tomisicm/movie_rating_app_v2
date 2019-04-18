@@ -3,14 +3,23 @@
     <v-content justify-center>
       <v-layout row wrap sm6 md4>
 
+        
+
         <v-card min-width="100vh" max-width="120vh">
-          <v-toolbar>
-            <v-toolbar-items>
-              <v-btn flat>Sent by me</v-btn>
-              <v-btn flat>Sent to me</v-btn>
-            </v-toolbar-items>
-            <NewMessage />
-          </v-toolbar>
+          <NewMessage />
+            <v-tabs v-model="active">
+              <v-tab ripple>Sent by me</v-tab>
+              <v-tab ripple>Sent to me</v-tab>
+            <v-tab-item>
+              tab1 items
+            </v-tab-item>
+            <v-tab-item>
+              tab2 items
+            </v-tab-item>
+          </v-tabs>
+
+            
+          
 
         <MessageList/>
 
@@ -28,7 +37,7 @@ import MessageList from '@/components/messages/MessageList'
 export default {
   data () {
     return {
-    
+      active: null
     }
   },
 
@@ -37,3 +46,7 @@ export default {
   }
 }
 </script>
+
+<style>
+
+</style>

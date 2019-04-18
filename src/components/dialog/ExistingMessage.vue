@@ -23,9 +23,9 @@
         <v-card-title class="headline">
           <v-responsive class="pt-4">
             <v-avatar left size="50" class="grey lighten-2">
-              <img :src="user.avatar" alt="user avatar">
+              <!-- <img :src="userr.avatar" alt="user avatar"> -->
             </v-avatar>
-            <span class="mx-4 title font-weight-light">{{user.name}}</span>  
+            <span class="mx-4 title font-weight-light">{user.name}</span>  
           </v-responsive>
           <v-spacer/>
           <button class="v-btn--flat v-btn--small theme--light"
@@ -39,13 +39,13 @@
         <v-card-text>
         <div class="mr-4">
           <hgroup class="speech-bubble white--text text-sm-left">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae natus, vero doloremque placeat earum facere, voluptatibus nostrum laboriosam perferendis harum animi ratione numquam ut? Fugit consectetur at doloremque accusamus tenetur?
+          LEFT 
           </hgroup>
         </div>
           
         <div class="ml-4">
           <hgroup class="speech-bubble white--text text-sm-left">
-          Voluptatibus nostrum laboriosam perferendis harum animi ratione numquam ut? Fugit consectetur at doloremque accusamus tenetur?
+          RIGHT
           </hgroup>
         </div>
         </v-card-text>
@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import messagingService from '@/utils/services/message-service'
 
 import { eventBus } from '@/main'
@@ -75,22 +76,42 @@ import { eventBus } from '@/main'
 export default {
   data () { 
     return {
+      userr: { avatar:"/assets/kisspng-computer-icons-user-account-symbol-clip-art-icon-mo-5b38a9723954d0.1097238515304400502348.jpg" },
       dialog: false,
-      user: { name: 'The Jack', role: 'Web Developer', avatar:"/assets/kisspng-computer-icons-user-account-symbol-clip-art-icon-mo-5b38a9723954d0.1097238515304400502348.jpg" },
-      conersation: []
+      /* user: this.getUser()._id, */
+      conversation: []
     }
+  },
+
+  methods: {
+    formatConvo () {
+      this.conversation.forEach( convo => {
+        convo.isLeft = convo.sender._id === this.getUser._id
+      })
+    }
+  },
+
+  computed: {
+    ...mapGetters([
+      'getUser'
+    ]),
   },
 
   created () {
     eventBus.$on('openConversationInChatMode', (recipiants) => {
-      console.log(recipiants[0]._id)
+      // console.log(recipiants[0]._id)
       this.dialog = true
       messagingService.getConversation(recipiants[0]._id)
-      .then((data) => {
-        this.conersation = data
-        console.log(data)
+      .then(({data}) => {
+        this.conversation = data
       })
     })
+  }, 
+
+  watch: {
+    conversation() {
+      this.formatConvo()
+    }
   }
 
 }

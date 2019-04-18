@@ -3,7 +3,7 @@
     <v-content justify-center>
       <v-layout row wrap sm6 md4>
 
-        
+        <ExistingMessage />
 
         <v-card min-width="100vh" max-width="120vh">
           <NewMessage />
@@ -11,17 +11,17 @@
               <v-tab ripple>Sent by me</v-tab>
               <v-tab ripple>Sent to me</v-tab>
             <v-tab-item>
-              tab1 items
+
+              <MessageList :items="outboxitems"/>
+            
             </v-tab-item>
             <v-tab-item>
-              tab2 items
+              
+              <MessageList :items="inboxitems"/>
+
             </v-tab-item>
           </v-tabs>
 
-            
-          
-
-        <MessageList/>
 
         </v-card>
 
@@ -31,18 +31,43 @@
 </template>
 
 <script>
+import messageService from '@/utils/services/message-service'
+
+import ExistingMessage from '@/components/dialog/ExistingMessage'
 import NewMessage from '@/components/dialog/NewMessage'
 import MessageList from '@/components/messages/MessageList'
 
 export default {
   data () {
     return {
-      active: null
+      active: null,
+      inboxitems: [],
+      outboxitems: []
     }
   },
 
+  methods: {
+    getInboxMsgs () {
+      messageService.getInboxMessages()
+        .then(({data})=> {
+          this.inboxitems = data
+        })
+    },
+    getOutboxMsgs () {
+      messageService.getOutboxMessages()
+        .then(({data})=> {
+          this.outboxitems = data
+        })
+    },
+  },
+
+  created() {
+    this.getInboxMsgs()
+    this.getOutboxMsgs()
+  },
+
   components: {
-    MessageList, NewMessage, 
+    MessageList, NewMessage, ExistingMessage,
   }
 }
 </script>

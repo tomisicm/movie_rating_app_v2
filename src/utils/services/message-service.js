@@ -11,9 +11,17 @@ class MessagingService {
     })
   }
 
-  getAllUserMessages() {
+  getInboxMessages() {
     return http
-    .get('/api/messaging')
+    .get('/api/messaging/inbox')
+    .then(({ data }) => {
+      return data
+    })
+  }
+
+  getOutboxMessages() {
+    return http
+    .get('/api/messaging/outbox')
     .then(({ data }) => {
       return data
     })

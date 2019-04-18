@@ -37,6 +37,8 @@ export default {
 
   methods: {
     onClick () {
+      // console.log(this.item.recipiants)
+      console.log('dlicks')
       eventBus.$emit('openConversationInChatMode', this.item.recipiants)
     }
   }

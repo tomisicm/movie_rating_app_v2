@@ -40,14 +40,10 @@
         <div class="subheading grey--text my-2">
           Average Rating
         </div>
-        <span>4.2</span>
+        <span>{{ getAverageRating() }}</span>
       </v-flex>
     </v-layout>
-    <div class="subheading grey--text my-2">
-      Comment section:
-    </div>
-    <v-divider />
-    <CommentSection />
+    <CommentSection v-if="movie.commentSection === 'open' "/>
   </v-container>
 </template>
 
@@ -100,7 +96,11 @@ export default {
       this.rating = newRating
       ratingService.createRating({value: this.rating, item: this.$route.params.id})
       /* .then(({data}) => {}) */
+    },
+    getAverageRating () {
+      return this.rating ? this.rating : 'No average rating available.'
     }
+  
   },
 
   components: {

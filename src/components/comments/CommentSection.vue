@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div class="subheading grey--text my-2">
+      Comment section:
+    </div>
+    <v-divider />
     <v-container justify-center class="text-xs-center">
       <v-pagination
         v-model="page"

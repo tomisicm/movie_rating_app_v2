@@ -2,7 +2,7 @@ import http from './http-service'
 
 class UserService {
 
-  searchForUsers(query, page=10, perPage=10) {
+  searchForUsers(query, page, perPage) {
     return http
     .get('/api/user/all', {
       params: {

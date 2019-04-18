@@ -43,16 +43,22 @@ export default {
   data () { 
     return {
       avatar: 'https://spng.pngfly.com/20181205/cli/kisspng-vector-graphics-computer-icons-user-profile-portab-writer-recommend-svg-png-icon-free-download-9768-5c0851b140e792.0406469415440490732659.jpg',
-      search: '',
       users: []
     }
   },
 
-  created() {
-    userService.searchForUsers(this.search)
+  // this thing shares functionality with messaging, it can be further extracted
+  methods: {
+    getUsers () {
+      userService.searchForUsers()
       .then(({data}) => {
         this.users = data.docs
       })
+    }
+  },
+
+  created() {
+    this.getUsers()
   },
 
   components: {

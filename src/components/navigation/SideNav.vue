@@ -26,7 +26,7 @@
       </v-list-tile-content>    
     </v-list-tile>
 
-    <v-list-tile :to="{ name: 'books' }">
+    <!-- <v-list-tile :to="{ name: 'books' }">
       <v-list-tile-action>
         <v-icon class="white--text">
           library_books
@@ -37,9 +37,9 @@
           Books
         </v-list-tile-title>
       </v-list-tile-content>    
-    </v-list-tile>
+    </v-list-tile> -->
 
-    <v-list-tile :to="{ name: 'videos' }">
+    <!-- <v-list-tile :to="{ name: 'videos' }">
       <v-list-tile-action>
         <v-icon class="white--text">
           video_library
@@ -50,7 +50,7 @@
           Videos
         </v-list-tile-title>
       </v-list-tile-content>    
-    </v-list-tile>
+    </v-list-tile> -->
 
     <v-list-tile :to="{ name: 'users' }">
       <v-list-tile-action>

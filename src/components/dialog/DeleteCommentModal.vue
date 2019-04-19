@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import { eventBus } from '@/main'
+
 import commentService from '@/utils/services/comment-service'
 
 export default {

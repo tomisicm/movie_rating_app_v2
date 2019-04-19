@@ -56,7 +56,6 @@ export default {
   created () {
     this.getComments()
     eventBus.$on('updateView', () => {
-      console.log('is dis true?')
       this.getComments()
     })
   },

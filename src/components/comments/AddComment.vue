@@ -41,14 +41,16 @@ export default {
   },
   methods: {
     onSubmit () {
+      // figure out clearer way to handle this shite
       if (this.comment.id) {
-        commentService.editComment(this.comment.id, this.comment)
-        .then((data) => {
-          eventBus.$emit('updateView', data)
-        })
+        commentService.editComment(this.comment.id, this.comment).then(( {data} ) => {
+        eventBus.$emit('updateView', data)
+      })
         return
       }
-      commentService.createComment(this.comment)
+      commentService.createComment(this.comment).then(( {data} ) => {
+        eventBus.$emit('updateView', data)
+      })
     },
     clear () {
       this.comment.body = '',

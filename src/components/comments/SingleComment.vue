@@ -22,7 +22,7 @@
         <div v-if="currentUsersComment()">
           <a right @click="editComment"><i> Edit</i></a>
           <v-spacer />
-          <DeleteComment
+          <DeleteCommentModal
             :comment="comment"
           />
         </div>

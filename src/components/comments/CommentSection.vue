@@ -31,7 +31,7 @@ import AddComment from '@/components/comments/AddComment'
 
 export default {
   name: 'CommentSection',
-  components: { SingleComment, AddComment },
+  
   data: () => ({
     limit: 5,
     page: 1,
@@ -56,6 +56,7 @@ export default {
   created () {
     this.getComments()
     eventBus.$on('updateView', () => {
+      console.log('is dis true?')
       this.getComments()
     })
   },
@@ -63,9 +64,9 @@ export default {
     page() {
       this.getComments()
     }
-  }
+  },
 
-
+  components: { SingleComment, AddComment, }
 }
 </script>
 

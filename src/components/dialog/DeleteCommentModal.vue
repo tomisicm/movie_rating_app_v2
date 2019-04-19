@@ -25,6 +25,8 @@
 import commentService from '@/utils/services/comment-service'
 
 export default {
+  name: 'DeleteCommentModal',
+
   props: {
     comment: Object
   },
@@ -43,7 +45,7 @@ export default {
       this.dialog = false
       commentService.deleteComment(this.comment.id)
         .then((data) => { 
-          // i should emit an event so that i fetch new round of comments
+          eventBus.$emit('updateView', data)
         })
     },
     open () {

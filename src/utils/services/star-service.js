@@ -15,35 +15,23 @@ class StarService {
     })
   }
 
-  /* getSome(page = 1, perPage = 5) {
-    return http
-    .get('/api/star', { 
-      params: {
-        page,
-        perPage
-      }
-    })
-    .then(({ data }) => {
-      return data
-    })
-  } */
 
   get(id) {
     return http.get(`/api/star/${id}`)
     .then(({ data }) => data)
   }
 
-  /* create({ star }) {
-    return http.post('/api/star/', {
+  createStar(star) {
+    return http.post('/api/star/', 
       star
-    })
-  } */
+    )
+  }
 
-  /* editStar(id, { star }) {
-    return http.put(`/api/star/${id}`, {
-     
-    })
-  } */
+  editStar(id, star) {
+    return http.put(`/api/star/${id}`, 
+      star
+    )
+  }
 
   deleteStar(id) {
     return http.delete(`/api/star/${id}`)

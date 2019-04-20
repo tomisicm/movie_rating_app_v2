@@ -6,7 +6,7 @@
       Artists List:
       <v-spacer />
       
-      <!-- <StarsDialog/> -->
+      <ArtistDialog />
 
       <v-btn color="primary" @click="addArtist">
       <v-icon>add</v-icon>
@@ -35,19 +35,16 @@
       <td class="text-xs-center">
         {{ props.item.fullname }}
       </td>
-      <!-- <td class="text-xs-center">
-        {{ props.item.type.toString() | splitStringByComma }}
-      </td> -->
+      <td class="text-xs-center">
+        {{ props.item.profession.toString() | splitStringByComma }}
+      </td>
       <td class="justify-center layout px-0">
-          <v-icon
-            small
-            class="mr-2"
+          <v-icon small class="mr-2"
             @click="editArtist(props.item)"
           >
             edit
           </v-icon>
-          <v-icon
-            small
+          <v-icon small
             @click="deleteArtist(props.item)"
           >
             delete
@@ -60,7 +57,7 @@
         color="error"
         icon="warning"
       >
-        Your search for "{{ search }}" found no results.
+        No results found. If the artist is missing, please add to the database record.
       </v-alert>
     </v-data-table>
   </v-card>
@@ -73,7 +70,9 @@ import starService from '@/utils/services/star-service'
 
 import splitString from '@/mixins/formatString'
 import { inputMixin } from '@/mixins/inputMixin'
-// import StarDialog from '@/components/dialog/StarDialog'
+
+import ArtistDialog from '@/components/dialog/ArtistDialog'
+
 import MoviesNav from '@/components/navigation/MovieNav'
 
 import _ from 'lodash'
@@ -89,7 +88,7 @@ export default {
       search: '',
       headers: [
         { text: 'Artist name', align: 'center', value: 'name' },
-        /* { text: 'Artist Type', align: 'center', value: 'type' }, */
+        { text: 'Artist Profession', align: 'center', value: 'profession' },
         { text: 'Actions', align: 'center', value: 'type', sortable: false }
       ],
       stars: [],
@@ -131,7 +130,7 @@ export default {
     splitString, inputMixin
   ],
   components: {
-    MoviesNav, /* ArtistDialog */
+    MoviesNav, ArtistDialog
   },
 }
 </script>

@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import commentService from '@/utils/services/comment-service'
 import { eventBus } from '@/main'
 import { mapGetters } from 'vuex'
 

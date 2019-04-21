@@ -8,7 +8,7 @@
           {{ eventType }} Genre:
         </v-card-title>
         <v-card-text>
-          <v-form>
+          <v-form v-model="valid" ref="genreForm">
             <v-layout row class="my-4"> 
               <v-flex xs12 sm8 class="mx-4">
               <v-text-field
@@ -34,6 +34,7 @@
           </v-btn>
 
           <v-btn large color="primary white--text" flat="flat"
+            :disabled="!valid"
             @click="onSubmit"
           >
             {{ eventType }}
@@ -55,6 +56,7 @@ export default {
 
   data () { 
     return {
+      valid: true,
       dialog: false,
       localGenre: 
       {
@@ -91,10 +93,11 @@ export default {
     },
 
     resetGenre () {
-      this.localGenre.name = '',
+      this.localGenre.name = null
       this.localGenre.type = []
       this.localGenre._id = null
       this.dialog = false
+      this.$refs.genreForm.reset()
     }
   }, 
 

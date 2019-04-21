@@ -5,7 +5,7 @@
     <v-card-title class="title">
       Genres List:
       <v-spacer />
-      
+
       <GenreDialog/>
 
       <v-btn color="primary" @click="addGenre">
@@ -80,8 +80,8 @@ import { eventBus } from '@/main'
 
 export default {
   name:'GenresPage',
-  
-  data () { 
+
+  data () {
     return {
       dialog: false,
       search: '',
@@ -120,11 +120,11 @@ export default {
     }
 
   },
-  
+
   created () {
     this.getAllGenres()
   },
-  
+
 
   mixins: [
     splitString, inputMixin

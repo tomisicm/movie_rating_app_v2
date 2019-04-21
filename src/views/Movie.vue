@@ -59,6 +59,14 @@ import CommentSection from '@/components/comments/CommentSection'
 
 export default {
   name: 'Movie',
+
+  // completely forgot that i am passing this from vue router
+  // from vue router and clean this thing later
+  props: {
+    id: {
+      type: String
+    }
+  },
   
   data: () => ({
     movie: {

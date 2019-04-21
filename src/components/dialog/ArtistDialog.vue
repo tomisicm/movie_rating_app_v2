@@ -6,7 +6,7 @@
       </v-card-title>
 
       <v-card-text>
-        <v-form>
+        <v-form v-model="valid" lazy-validation ref="artistForm">
           <v-layout row class="my-4"> 
             <v-flex xs12 sm8 class="mx-4">
             <v-text-field
@@ -42,6 +42,7 @@
         </v-btn>
 
         <v-btn large color="primary white--text" flat="flat"
+          :disabled="!valid"
           @click="onSubmit"
         >
         {{ eventType }}
@@ -63,11 +64,12 @@ export default {
 
   data () { 
     return {
+      valid: true,
       dialog: false,
       localArtist: {
         name: {
           first: null,
-          last: null,
+          last: null
         },
         profession: []
       },
@@ -98,18 +100,19 @@ export default {
     },
     resetArtist () {
       this.localArtist._id = null
-      this.localArtist.name.first = '',
-      this.localArtist.name.last = '',
+      this.localArtist.name.first = null,
+      this.localArtist.name.last = null,
       this.localArtist.profession = []
       this.dialog = false
+      this.$refs.artistForm.reset()
     },
     formatedArtist (artist) {
-      // just for giggles. some objects in db did not have the given property
+      // just for giggles. some documents (old records) in db did not have the given property
       // so i gave them one.
       if (!artist.hasOwnProperty('profession')) {
         artist = {...artist, profession: []}
       }
-      
+
       return artist
     }
   }, 
@@ -117,6 +120,7 @@ export default {
   created () {
     eventBus.$on('addartist', () => {
       this.eventType = 'Submit'
+      this.resetArtist ()
       this.dialog = true
     })
     eventBus.$on('editartist', (data) => {

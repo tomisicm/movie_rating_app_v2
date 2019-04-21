@@ -16,13 +16,11 @@
             
             </v-tab-item>
             <v-tab-item>
-              
+
               <MessageList :items="inboxitems"/>
 
             </v-tab-item>
           </v-tabs>
-
-
         </v-card>
 
       </v-layout>

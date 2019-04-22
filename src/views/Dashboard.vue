@@ -5,24 +5,20 @@
     </h1>
   
     <v-container>
-      <v-layout
-        row
-        class="my-4"
-      >
+      <v-layout row class="my-4">
         <div class="display-1 grey--text">
           Movies
         </div>
       </v-layout>
+
       <MoviePanel/>
 
-      <v-layout
-        row
-        class="my-4"
-      >
+
+      <!-- <v-layout row class="my-4">
         <div class="display-1 grey--text">
           Books
         </div>
-      </v-layout>
+      </v-layout> -->
     </v-container>
   </div>
 </template>

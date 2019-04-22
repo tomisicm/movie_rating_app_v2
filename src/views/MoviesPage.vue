@@ -1,14 +1,13 @@
 <template>
   <div>
+
     <MoviesNav />
+
     <h1 class="subheading grey--text">
       This is the movies page
     </h1>
     <v-container class="my-5">
-      <v-card
-        flat
-        class="pa-3"
-      >  
+      <v-card flat class="pa-3">  
         <v-card-title>
           Movies:
           <v-spacer />
@@ -77,17 +76,19 @@ import MoviesNav from '@/components/navigation/MovieNav'
 export default {
   name: 'Moives',
 
-  data: () => ({
-    search: '',
-    headers: [
-      { text: 'Movie title', align: 'center', value: 'title', width: '285px' },
-      { text: 'Genre', align: 'center', value: 'genres' },
-      { text: 'Release Year', align: 'center', value: 'releaseYear' },
-      { text: 'Comment Section', align: 'center', value: 'commentSection', width: '45px' },
-      { text: 'Person', align: 'center', value: 'name' }
-    ],
-    movies: []
-  }),
+  data () { 
+    return {
+      search: '',
+      headers: [
+        { text: 'Movie title', align: 'center', value: 'title', width: '285px' },
+        { text: 'Genre', align: 'center', value: 'genres' },
+        { text: 'Release Year', align: 'center', value: 'releaseYear' },
+        { text: 'Comment Section', align: 'center', value: 'commentSection', width: '45px' },
+        { text: 'Person', align: 'center', value: 'name' }
+      ],
+      movies: []
+    }
+  },
 
   methods: {
     getAllMovies () {
@@ -96,14 +97,12 @@ export default {
         this.movies = data
       })
     },
-
     customFilter(items, search, filter) {
       search = search.toString().toLowerCase();
       return items.filter(i => (
         Object.keys(i).some(j => filter(i[j], search))
       ))
     },
-
     getGenresArray(genres) {
       return genres.map(o => o && o.name)
     },

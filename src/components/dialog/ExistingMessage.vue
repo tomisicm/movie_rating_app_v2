@@ -76,7 +76,6 @@ export default {
     return {
       userr: { avatar:"/assets/kisspng-computer-icons-user-account-symbol-clip-art-icon-mo-5b38a9723954d0.1097238515304400502348.jpg" },
       dialog: false,
-      /* user: this.getUser()._id, */
       conversation: []
     }
   },
@@ -97,9 +96,8 @@ export default {
 
   created () {
     eventBus.$on('openConversationInChatMode', (recipiants) => {
-      // console.log(recipiants[0]._id)
       this.dialog = true
-      messagingService.getConversation(recipiants[0]._id)
+      messagingService.getConversation(recipiants)
       .then(({data}) => {
         this.conversation = data
       })
@@ -142,10 +140,6 @@ hgroup {
 #send {
   min-width: 48px;
   margin: 10px -5px 35px 0px;
-  /* margin-top: 10px;
-  margin-bottom: 35px;
-  margin-left: 0px;
-  margin-right: -5px; */
   padding: 0px;
 }
 </style>

@@ -18,6 +18,7 @@
 
 <script>
 import { eventBus } from '@/main'
+import { mapGetters } from 'vuex'
 import dateToString from '@/mixins/dateToString'
 
 export default {
@@ -38,13 +39,23 @@ export default {
 
   methods: {
     onClick () {
-      // console.log(this.item.recipiants)
-      eventBus.$emit('openConversationInChatMode', this.item.recipiants)
+      // sent by me case
+      if (this.getUser._id === this.item.sender._id)
+        eventBus.$emit('openConversationInChatMode', this.item.recipiants[0]._id)
+      // sent to me case
+      else 
+        eventBus.$emit('openConversationInChatMode', this.item.sender._id)
     },
     
     recipiantName () {
       return this.item.recipiants[0].name + ' '
     }
+  },
+
+  computed: {
+    ...mapGetters([
+      'getUser'
+    ])
   },
 
   mixins: [dateToString]

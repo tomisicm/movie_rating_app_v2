@@ -19,7 +19,7 @@
 
           <UserList 
             :recipiants="recipiants"
-            v-on:changeRecipiantsList="changeRecipiantsList($event)"
+            @changeRecipiantsList="changeRecipiantsList($event)"
           />
 
         </v-card-title>

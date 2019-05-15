@@ -68,8 +68,8 @@ export default {
       dialog: false,
       localArtist: {
         name: {
-          first: null,
-          last: null
+          first: "",
+          last: ""
         },
         profession: []
       },
@@ -100,8 +100,8 @@ export default {
     },
     resetArtist () {
       this.localArtist._id = null
-      this.localArtist.name.first = null,
-      this.localArtist.name.last = null,
+      this.localArtist.name.first = "",
+      this.localArtist.name.last = "",
       this.localArtist.profession = []
       this.dialog = false
       this.$refs.artistForm.reset()

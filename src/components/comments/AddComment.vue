@@ -30,15 +30,17 @@ import commentService from '@/utils/services/comment-service'
 
 export default {
   name: 'AddComment',
+
   data () {
     return {
       comment: {
-        id: '',
+        id: null,
         body: '',
         item: this.$route.params.id,
       }
     }
   },
+
   methods: {
     onSubmit () {
       // figure out clearer way to handle this shite
@@ -54,12 +56,10 @@ export default {
     },
     clear () {
       this.comment.body = '',
-      this.comment.id = ''
+      this.comment.id = null
     }
   },
-  computed: {
-    
-  },
+
   created () {
     eventBus.$on('editCommentMode', (data) => {
       this.comment.body = data.body

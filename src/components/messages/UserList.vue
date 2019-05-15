@@ -63,10 +63,6 @@ export default {
     }
   },
 
-  computed: {
-    
-  },
-
   methods: {
     save() {
       setTimeout(() => {this.$emit('changeRecipiantsList', this.localRecipiants)}, 100)

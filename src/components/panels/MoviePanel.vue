@@ -20,15 +20,21 @@ import MovieCard from '@/components/panels/MovieCard.vue'
 
 export default {
   name: 'MoviePanel',
-  data: () => ({
-    movies: []
-  }),
+
+  data () { 
+    return {
+      movies: []
+    }
+  },
+
   components: {
     MovieCard
   },
+
   /* props: {
     movies: Array
   }, */
+
   methods: {
     getSomeMovies() {
       movieService.getSome(1, 6)
@@ -37,6 +43,7 @@ export default {
       })
     }
   },
+
   created () {
     this.getSomeMovies()
   }
@@ -45,7 +52,7 @@ export default {
 
 <style>
 .container.fill-height {
-    align-items: normal;
+  align-items: normal;
 }
 a.side_bar_link {
   text-decoration: none;

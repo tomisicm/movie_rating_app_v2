@@ -44,9 +44,7 @@ export default {
   props: {
     genreslist: {
       type: Array,
-      default () {
-        return []
-      }
+      default: () => []
     }
   },
 

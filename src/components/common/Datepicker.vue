@@ -38,22 +38,15 @@
 
 <script>
   export default {
-    /* props: {
-      release_date: {
-        type: String,
-        default: new Date().toISOString().substr(0, 7)
-      }
-    },*/
+
     data () {
       return {
         date: null,
-        selectedDate: '',
+        selectedDate: null,
         menu: false
       }
     },
-    computed: {
-      
-    },
+
     methods: {
       save() {
         this.selectedDate = this.$refs.menu.save(this.date)

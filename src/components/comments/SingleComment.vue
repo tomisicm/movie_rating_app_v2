@@ -40,12 +40,13 @@ import dateToString from '@/mixins/dateToString'
 import DeleteCommentModal from '@/components/dialog/DeleteCommentModal'
 
 export default {
-  name: 'singleComment',
+  name: 'SingleComment',
 
-  props: { comment: Object },
-  data: () => ({
-    
-  }),
+  props: { 
+    comment: {
+      type: Object
+    }
+  },
 
   methods: {
     ...mapGetters([
@@ -57,13 +58,10 @@ export default {
     currentUsersComment () {
       return this.comment.createdBy._id === this.getUser()._id
     }
-
-  },
-  created () {
-
   },
 
   mixins: [ dateToString ],
+
   components: {
     DeleteCommentModal
   }

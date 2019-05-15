@@ -8,7 +8,7 @@
       <img src='https://cdn.vuetifyjs.com/images/lists/1.jpg'>
    </v-list-tile-avatar>
 
-   <v-list-tile-content v-on:click = "onClick">
+   <v-list-tile-content @click = "onClick">
       <v-list-tile-title>{{ recipiantName() }} {{ item.createdAt| formatDate('YYYY MM DD hh:mm:ss') }}</v-list-tile-title>
       <v-list-tile-sub-title v-html="item.message.body"></v-list-tile-sub-title>
    </v-list-tile-content>

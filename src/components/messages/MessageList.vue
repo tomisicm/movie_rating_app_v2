@@ -25,13 +25,6 @@ export default {
     items: Array
   },
 
-  data () {
-    return {
-      
-    }
-  },
-
-
   components: {
     Message, 
   }

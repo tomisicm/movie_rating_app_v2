@@ -32,13 +32,15 @@ import AddComment from '@/components/comments/AddComment'
 export default {
   name: 'CommentSection',
   
-  data: () => ({
-    limit: 5,
-    page: 1,
-    pages: null,
-    total: null,
-    comments: null
-  }),
+  data () { 
+    return {
+      limit: 5,
+      page: 1,
+      pages: null,
+      total: null,
+      comments: null
+    }
+  },
 
   methods: {
     getComments () {
@@ -53,12 +55,14 @@ export default {
       })
     }
   },
+
   created () {
     this.getComments()
     eventBus.$on('updateView', () => {
       this.getComments()
     })
   },
+
   watch: {
     page() {
       this.getComments()

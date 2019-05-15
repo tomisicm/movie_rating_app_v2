@@ -33,9 +33,11 @@ export default {
     comment: Object
   },
 
-  data: () => ({
-    dialog: false
-  }),
+  data () {
+    return {
+      dialog: false
+    }
+  },
 
   methods: {
     cancel () {
